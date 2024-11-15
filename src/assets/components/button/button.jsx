@@ -1,10 +1,29 @@
-// import './button.css'
+import React, { useState } from "react";
+import "./button.css";
 
+export const useButton = (initialText, initialClassName) => {
+    const [text, setText] = useState(initialText);
+    const [className, setClassName] = useState(initialClassName);
 
-// const BlueButton = () => {
-//     return (
-//         <button className=" btn"> click here</button>
-//     );
-// }
+    const updateText = (newText) => setText(newText);
+    const updateClassName = (newClassName) => setClassName(newClassName);
 
-// export default BlueButton
+    return {
+        text,
+        className,
+        updateText,
+        updateClassName,
+    };
+};
+
+const BlueButton = () => {
+    const { text, className } = useButton("Click here", "btn");
+
+    return (
+        <button className={className}>
+            {text}
+        </button>
+    );
+};
+
+export default BlueButton;
